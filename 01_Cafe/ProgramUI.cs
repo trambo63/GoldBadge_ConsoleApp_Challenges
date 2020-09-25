@@ -36,10 +36,10 @@ namespace _01_Cafe
                         Console.ReadKey();
                         break;
                     case "2":
-                        //CreateItem();
+                        CreateItem();
                         break;
                     case "3":
-                        //DeleteItem();
+                        DeleteItem();
                         break;
                     case "4":
                         keepThinking = false;
@@ -58,10 +58,61 @@ namespace _01_Cafe
             foreach (MenuItem menuItem in menuItemsList)
             {
                 Console.WriteLine($"{menuItem.Number} {menuItem.Name} \n" +
-                    $"{menuItem.Description} \n" +
-                    $"{menuItem.Ingredients} \n" +
-                    $"${menuItem.Price}");
+                    $"Description: {menuItem.Description} \n" +
+                    $"Ingredients: {menuItem.Ingredients} \n" +
+                    $"Price: ${menuItem.Price} \n" +
+                    "-------------------------");
             }
+        }
+
+        private void CreateItem()
+        {
+            Console.Clear();
+            MenuItem menuItem = new MenuItem();
+            Console.WriteLine("Enter the Item Number");
+            menuItem.Number = Console.ReadLine();
+            Console.WriteLine("Enter the Item Name");
+            menuItem.Name = Console.ReadLine();
+            Console.WriteLine("Enter a Description of the Item");
+            menuItem.Description = Console.ReadLine();
+            Console.WriteLine("Enter the Item Ingredients");
+            menuItem.Ingredients = Console.ReadLine();
+            Console.WriteLine("Enter Price amount");
+            menuItem.Price = Convert.ToDecimal(Console.ReadLine());
+
+            _menuRepo.AddItemToMenu(menuItem);
+        }
+
+        private void DeleteItem()
+        {
+            Console.WriteLine("Which item do you want to delete?");
+            List<MenuItem> menuItems = _menuRepo.GetAllMenuItems();
+            int count = 0;
+            foreach (var menuItem in menuItems)
+            {
+                count++;
+                Console.WriteLine($"{count}: {menuItem.Name}");
+            }
+            int userInput = int.Parse(Console.ReadLine());
+            int indexValue = userInput - 1;
+            if (indexValue >= 0 && userInput < menuItems.Count)
+            {
+                MenuItem itemSelected = menuItems[indexValue];
+                if (_menuRepo.DeleteMenuItem(itemSelected))
+                {
+                    Console.WriteLine($"{itemSelected} removed.");
+                }
+                else
+                {
+                    Console.WriteLine("Invald");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invald");
+            }
+            Console.WriteLine("Press any key to continue.........");
+            Console.ReadKey();
         }
 
         private void SeedData()

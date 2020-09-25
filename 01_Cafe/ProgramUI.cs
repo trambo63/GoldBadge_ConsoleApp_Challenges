@@ -9,16 +9,15 @@ namespace _01_Cafe
 {
     public class ProgramUI
     {
+        private readonly MenuRepo _menuRepo = new MenuRepo();
         public void Run()
         {
             SeedData();
             RunMenu();
         }
 
-        public List<MenuItem> menuList = new List<MenuItem>();
         private void RunMenu()
         {
-            //MenuItem newItem = new MenuItem("1", "Buger", "Buns and beef", "Angus Beef", 10.24m);
             bool keepThinking = true;
             while (keepThinking)
             {
@@ -32,9 +31,8 @@ namespace _01_Cafe
                 switch (userInput)
                 {
                     case "1":
-                        //ShowAllItems();
                         Console.Clear();
-                        Console.WriteLine();
+                        ShowAllItems();
                         Console.ReadKey();
                         break;
                     case "2":
@@ -53,11 +51,23 @@ namespace _01_Cafe
                 }
             }
         }
+        private void ShowAllItems()
+        {
+            Console.Clear();
+            List<MenuItem> menuItemsList = _menuRepo.GetMenuItems();
+            foreach (MenuItem menuItem in menuItemsList)
+            {
+                Console.WriteLine($"{menuItem.Number} {menuItem.Name} \n" +
+                    $"{menuItem.Description} \n" +
+                    $"{menuItem.Ingredients} \n" +
+                    $"${menuItem.Price}");
+            }
+        }
 
-        public void SeedData()
+        private void SeedData()
         {
             var menuItemOne = new MenuItem("1", "Buger", "Buns and beef", "Angus Beef", 10.24m);
-            menuList.Add(menuItemOne);
+            _menuRepo.AddItemToMenu(menuItemOne);
         }
     }
 }

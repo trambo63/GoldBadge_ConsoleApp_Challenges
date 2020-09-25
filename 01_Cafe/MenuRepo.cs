@@ -6,38 +6,21 @@ using System.Threading.Tasks;
 
 namespace _01_Cafe
 {
-    public class MenuRepo : MenuItem
+    public class MenuRepo : MenuItemRepo
     {
-        //this is the fake data base
-        protected readonly List<MenuItem> _menu = new List<MenuItem>();
-
-        //Crud
-        //Create
-        public bool AddItemToMenu(MenuItem item)
+        public List<MenuItem> GetAllMenuItems()
         {
-            int startingCount = _menu.Count;
-            _menu.Add(item);
-            bool wasAdded = (_menu.Count > startingCount) ? true : false;
-            return wasAdded;
-        }
-
-        //Read
-        public List<MenuItem> GetMenuItems()
-        {
-            return _menu;
-        }
-
-        //Read One 
-        public MenuItem GetMenuItemByNumber(string number)
-        {
+            List<MenuItem> allMenuItems = new List<MenuItem>();
             foreach (MenuItem menuItem in _menu)
             {
-                if (menuItem.Number.ToLower() == number.ToLower())
+                if (menuItem is MenuItem)
                 {
-                    return menuItem;
+                    allMenuItems.Add((MenuItem)menuItem);
                 }
             }
-            return null;
+            return allMenuItems;
         }
+
+
     }
 }

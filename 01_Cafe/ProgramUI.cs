@@ -9,7 +9,7 @@ namespace _01_Cafe
 {
     public class ProgramUI
     {
-        private readonly MenuRepo _menuRepo = new MenuRepo();
+        private readonly MenuItemRepo _menuRepo = new MenuItemRepo();
         public void Run()
         {
             SeedData();
@@ -86,21 +86,21 @@ namespace _01_Cafe
         private void DeleteItem()
         {
             Console.WriteLine("Which item do you want to delete?");
-            List<MenuItem> menuItems = _menuRepo.GetAllMenuItems();
+            List<MenuItem> menuItems = _menuRepo.GetMenuItems();
             int count = 0;
             foreach (var menuItem in menuItems)
             {
                 count++;
                 Console.WriteLine($"{count}: {menuItem.Name}");
             }
-            int userInput = int.Parse(Console.ReadLine());
+            int userInput = Convert.ToInt32(Console.ReadLine());
             int indexValue = userInput - 1;
-            if (indexValue >= 0 && userInput < menuItems.Count)
+            if (indexValue >= 0 && indexValue < menuItems.Count)
             {
                 MenuItem itemSelected = menuItems[indexValue];
                 if (_menuRepo.DeleteMenuItem(itemSelected))
                 {
-                    Console.WriteLine($"{itemSelected} removed.");
+                    Console.WriteLine($"{itemSelected.Name} removed.");
                 }
                 else
                 {
@@ -117,8 +117,10 @@ namespace _01_Cafe
 
         private void SeedData()
         {
-            var menuItemOne = new MenuItem("1", "Buger", "Buns and beef", "Angus Beef", 10.24m);
+            var menuItemOne = new MenuItem("1", "Buger", "Buns and beef", "Angus Beef", 6.25m);
+            var menuItemTwo = new MenuItem("2", "Hot Dog", "Dog in a bun", "Ballpark Frank", 4.50m);
             _menuRepo.AddItemToMenu(menuItemOne);
+            _menuRepo.AddItemToMenu(menuItemTwo);
         }
     }
 }

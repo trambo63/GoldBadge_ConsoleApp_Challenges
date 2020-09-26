@@ -28,38 +28,38 @@ namespace _01_Cafe
         }
 
         //Read One 
-        public MenuItem GetMenuItemByNumber(string number)
-        {
-            foreach (MenuItem menuItem in _menu)
-            {
-                if (menuItem.Number.ToLower() == number.ToLower())
-                {
-                    return menuItem;
-                }
-            }
-            return null;
-        }
+        //public MenuItem GetMenuItemByNumber(string number)
+        //{
+        //    foreach (MenuItem menuItem in _menu)
+        //    {
+        //        if (menuItem.Number.ToLower() == number.ToLower())
+        //        {
+        //            return menuItem;
+        //        }
+        //    }
+        //    return null;
+        //}
 
         //Update
-        public bool UpdateMenuItem(string originalNumber, MenuItem newMenuItem)
-        {
-            MenuItem oldItem = GetMenuItemByNumber(originalNumber);
+        //public bool UpdateMenuItem(string originalNumber, MenuItem newMenuItem)
+        //{
+        //    MenuItem oldItem = GetMenuItemByNumber(originalNumber);
 
-            if (oldItem != null)
-            {
-                oldItem.Number = newMenuItem.Number;
-                oldItem.Name = newMenuItem.Name;
-                oldItem.Description = newMenuItem.Description;
-                oldItem.Ingredients = newMenuItem.Ingredients;
-                oldItem.Price = newMenuItem.Price;
+        //    if (oldItem != null)
+        //    {
+        //        oldItem.Number = newMenuItem.Number;
+        //        oldItem.Name = newMenuItem.Name;
+        //        oldItem.Description = newMenuItem.Description;
+        //        oldItem.Ingredients = newMenuItem.Ingredients;
+        //        oldItem.Price = newMenuItem.Price;
 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
         //Delete
         public bool DeleteMenuItem(MenuItem menuItem)

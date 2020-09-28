@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -98,8 +99,34 @@ namespace _02_Claims
             claim.Description = Console.ReadLine();
             Console.WriteLine("Enter Claim Amount: ");
             claim.ClaimAmount = Convert.ToDecimal(Console.ReadLine());
-            Console.WriteLine("Enter date of incedent: (mm/dd/yyy)");
-            claim.DateOfIncident = DateTime.Parse(Console.ReadLine());
+            bool thinking = true;
+            while (thinking)
+            {
+                var dateFormats = new[] { "mm/dd/yyyy" };
+                bool isValid = false;
+
+                Console.WriteLine("Enter date of incedent: (mm/dd/yyyy)");
+                string dateInput = Console.ReadLine();
+
+                foreach (string dateFormat in dateFormats)
+                {
+                    DateTime dateToUse;
+                    if (DateTime.TryParse(dateInput, out dateToUse))
+                    {
+                        claim.DateOfIncident = dateToUse;
+                        isValid = true;
+                    }
+                }
+                if (isValid == true)
+                {
+                    thinking = false;
+                }
+                else
+                {
+                    Console.WriteLine("Ivalid");
+                }
+                
+            }
             Console.WriteLine("Enter date of claim: (mm/dd/yyyy)");
             claim.DateOfClaim = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Is the claim valid: \n" +

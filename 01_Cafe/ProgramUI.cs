@@ -31,9 +31,7 @@ namespace _01_Cafe
                 switch (userInput)
                 {
                     case "1":
-                        Console.Clear();
                         ShowAllItems();
-                        Console.ReadKey();
                         break;
                     case "2":
                         CreateItem();
@@ -62,7 +60,10 @@ namespace _01_Cafe
                     $"Ingredients: {menuItem.Ingredients} \n" +
                     $"Price: ${menuItem.Price} \n" +
                     "-------------------------");
+                
             }
+            Console.WriteLine("Press any key to continue.........");
+            Console.ReadKey();
         }
 
         private void CreateItem()

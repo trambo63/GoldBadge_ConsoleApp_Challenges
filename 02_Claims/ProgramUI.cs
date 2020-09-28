@@ -34,7 +34,7 @@ namespace _02_Claims
                         ShowAllClaims();
                         break;
                     case "2":
-                        ResolveNextClaim();
+                        HandleClaim();
                         break;
                     case "3":
                         EnterClaim();
@@ -128,7 +128,8 @@ namespace _02_Claims
                 }
                 
             }
-            while (keepThinking)
+            bool stillThinking = true;
+            while (stillThinking)
             {
                 var dateFormats = new[] { "mm/dd/yyyy" };
                 bool isValid = false;
@@ -147,7 +148,7 @@ namespace _02_Claims
                 }
                 if (isValid == true)
                 {
-                    keepThinking = false;
+                    stillThinking = false;
                 }
                 else
                 {
@@ -155,27 +156,42 @@ namespace _02_Claims
                 }
 
             }
-            Console.WriteLine("Is the claim valid: \n" +
-                "1: Yes \n" +
-                "2: No");
-            string input = Console.ReadLine();
-            switch (input)
+            TimeSpan span = claim.DateOfClaim - claim.DateOfIncident;
+            //double days = Math.Floor(spanToCheck.Days / 365.25);
+            Console.WriteLine(span);
+            double spanToCheck = Convert.ToDouble(span);
+            if (spanToCheck <= 30)
             {
-                case "1":
-                    claim.IsValid = true;
-                    break;
-                case "2":
-                    claim.IsValid = false;
-                    break;
-                default:
-                    Console.WriteLine("Invalid");
-                    Console.ReadKey();
-                    break;
+                claim.IsValid = true;
             }
+            else
+            {
+                claim.IsValid = false;
+            }
+            Console.WriteLine(claim.IsValid);
+            Console.WriteLine("Press any key to continue.........");
+            Console.ReadKey();
+            //Console.WriteLine("Is the claim valid: \n" +
+            //    "1: Yes \n" +
+            //    "2: No");
+            //string input = Console.ReadLine();
+            //switch (input)
+            //{
+            //    case "1":
+            //        claim.IsValid = true;
+            //        break;
+            //    case "2":
+            //        claim.IsValid = false;
+            //        break;
+            //    default:
+            //        Console.WriteLine("Invalid");
+            //        Console.ReadKey();
+            //        break;
+            //}
             _claimRepo.AddClaim(claim);
         }
 
-        private void ResolveNextClaim()
+        private void HandleClaim()
         {
             Console.WriteLine("Which claim do you want to Handle");
             List<Claim> claims = _claimRepo.GetClaims();
@@ -183,7 +199,7 @@ namespace _02_Claims
             foreach (var claim in claims)
             {
                 count++;
-                Console.WriteLine($"{count} ClaimID: {claim.ClaimID} \n" +
+                Console.WriteLine($"{count}) ClaimID: {claim.ClaimID} \n" +
                     $"Type: {claim.ClaimType} \n" +
                     $"Description: {claim.Description} \n" +
                     "-------------------------------------------------------");

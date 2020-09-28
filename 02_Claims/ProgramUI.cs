@@ -34,7 +34,7 @@ namespace _02_Claims
                         ShowAllClaims();
                         break;
                     case "2":
-                        //ResolveNextClaim();
+                        ResolveNextClaim();
                         break;
                     case "3":
                         EnterClaim();
@@ -71,6 +71,7 @@ namespace _02_Claims
 
         private void EnterClaim()
         {
+            Console.Clear();
             Claim claim = new Claim();
             Console.WriteLine("Enter Claim ID");
             claim.ClaimID = Convert.ToInt32(Console.ReadLine());
@@ -99,8 +100,8 @@ namespace _02_Claims
             claim.Description = Console.ReadLine();
             Console.WriteLine("Enter Claim Amount: ");
             claim.ClaimAmount = Convert.ToDecimal(Console.ReadLine());
-            bool thinking = true;
-            while (thinking)
+            bool keepThinking = true;
+            while (keepThinking)
             {
                 var dateFormats = new[] { "mm/dd/yyyy" };
                 bool isValid = false;
@@ -119,7 +120,7 @@ namespace _02_Claims
                 }
                 if (isValid == true)
                 {
-                    thinking = false;
+                    keepThinking = false;
                 }
                 else
                 {
@@ -127,8 +128,33 @@ namespace _02_Claims
                 }
                 
             }
-            Console.WriteLine("Enter date of claim: (mm/dd/yyyy)");
-            claim.DateOfClaim = DateTime.Parse(Console.ReadLine());
+            while (keepThinking)
+            {
+                var dateFormats = new[] { "mm/dd/yyyy" };
+                bool isValid = false;
+
+                Console.WriteLine("Enter date of Claim: (mm/dd/yyyy)");
+                string dateInput = Console.ReadLine();
+
+                foreach (string dateFormat in dateFormats)
+                {
+                    DateTime dateToUse;
+                    if (DateTime.TryParse(dateInput, out dateToUse))
+                    {
+                        claim.DateOfClaim = dateToUse;
+                        isValid = true;
+                    }
+                }
+                if (isValid == true)
+                {
+                    keepThinking = false;
+                }
+                else
+                {
+                    Console.WriteLine("Ivalid");
+                }
+
+            }
             Console.WriteLine("Is the claim valid: \n" +
                 "1: Yes \n" +
                 "2: No");
@@ -147,6 +173,42 @@ namespace _02_Claims
                     break;
             }
             _claimRepo.AddClaim(claim);
+        }
+
+        private void ResolveNextClaim()
+        {
+            Console.WriteLine("Which claim do you want to Handle");
+            List<Claim> claims = _claimRepo.GetClaims();
+            int count = 0;
+            foreach (var claim in claims)
+            {
+                count++;
+                Console.WriteLine($"{count} ClaimID: {claim.ClaimID} \n" +
+                    $"Type: {claim.ClaimType} \n" +
+                    $"Description: {claim.Description} \n" +
+                    "-------------------------------------------------------");
+
+            }
+            int userInput = Convert.ToInt32(Console.ReadLine());
+            int indexValue = userInput - 1;
+            if (indexValue >= 0 && indexValue < claims.Count)
+            {
+                Claim claimSelected = claims[indexValue];
+                if (_claimRepo.HandleClaim(claimSelected))
+                {
+                    Console.WriteLine($"CalimID: {claimSelected.ClaimID} Handled.");
+                }
+                else
+                {
+                    Console.WriteLine("Invald");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invald");
+            }
+            Console.WriteLine("Press any key to continue.........");
+            Console.ReadKey();
         }
 
         private void SeedData()

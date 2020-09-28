@@ -23,6 +23,11 @@ namespace _02_Claims
             return _claimDB;
         }
 
+        public bool HandleClaim(Claim claim)
+        {
+            bool handleClaimResult = _claimDB.Remove(claim);
+            return handleClaimResult;
+        }
 
     }
 }

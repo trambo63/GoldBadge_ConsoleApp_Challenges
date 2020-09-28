@@ -28,5 +28,38 @@ namespace _02_Claims
             DateOfClaim = dateOfClaim;
             IsValid = isValid;
         }
+
+        //public void DateVerification()
+        //{
+        //    Claim claim = new Claim();
+        //    bool thinking = true;
+        //    while (thinking)
+        //    {
+        //        var dateFormats = new[] { "mm/dd/yyyy" };
+        //        bool isValid = false;
+
+        //        Console.WriteLine("Enter date of incedent: (mm/dd/yyyy)");
+        //        string dateInput = Console.ReadLine();
+
+        //        foreach (string dateFormat in dateFormats)
+        //        {
+        //            DateTime dateToUse;
+        //            if (DateTime.TryParse(dateInput, out dateToUse))
+        //            {
+        //                claim.DateOfIncident = dateToUse;
+        //                isValid = true;
+        //            }
+        //        }
+        //        if (isValid == true)
+        //        {
+        //            thinking = false;
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Ivalid");
+        //        }
+
+        //    }
+        //}
     }
 }

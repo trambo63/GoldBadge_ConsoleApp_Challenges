@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace _02_Claims
     public class ProgramUI
     {
         private readonly ClaimRepo _claimRepo = new ClaimRepo();
+        readonly Queue<Claim> _claimQueue = new Queue<Claim>();
         public void Run()
         {
             SeedData();
@@ -57,7 +59,7 @@ namespace _02_Claims
             foreach (Claim claim in claimList)
             {
                 Console.WriteLine($"ClaimID: {claim.ClaimID} \n" +
-                    $"Claim Type: {claim.ClaimID} \n" +
+                    $"Claim Type: {claim.ClaimType} \n" +
                     $"Description: {claim.Description} \n" +
                     $"Amount: {claim.ClaimAmount} \n" +
                     $"Date Of Incedent: {claim.DateOfIncident} \n" +
@@ -65,6 +67,7 @@ namespace _02_Claims
                     $"IsVaild: {claim.IsValid}");
                 Console.WriteLine("------------------------------");
             }
+            Console.WriteLine("No further claims at this time \n");
             Console.WriteLine("Press any key to continue.........");
             Console.ReadKey();
         }
@@ -156,11 +159,14 @@ namespace _02_Claims
                 }
 
             }
+            var date1 = new DateTime(2020, 8, 1);
+            var date2 = new DateTime(2020, 8, 31);
+            TimeSpan span1 = date2 - date1;
+            //Console.WriteLine($"Control span: {span1}");
             TimeSpan span = claim.DateOfClaim - claim.DateOfIncident;
-            //double days = Math.Floor(spanToCheck.Days / 365.25);
-            Console.WriteLine(span);
-            double spanToCheck = Convert.ToDouble(span);
-            if (spanToCheck <= 30)
+            //Console.WriteLine($"My Span: {span}");
+
+            if (span <= span1)
             {
                 claim.IsValid = true;
             }
@@ -171,66 +177,59 @@ namespace _02_Claims
             Console.WriteLine(claim.IsValid);
             Console.WriteLine("Press any key to continue.........");
             Console.ReadKey();
-            //Console.WriteLine("Is the claim valid: \n" +
-            //    "1: Yes \n" +
-            //    "2: No");
-            //string input = Console.ReadLine();
-            //switch (input)
-            //{
-            //    case "1":
-            //        claim.IsValid = true;
-            //        break;
-            //    case "2":
-            //        claim.IsValid = false;
-            //        break;
-            //    default:
-            //        Console.WriteLine("Invalid");
-            //        Console.ReadKey();
-            //        break;
-            //}
             _claimRepo.AddClaim(claim);
         }
 
         private void HandleClaim()
         {
-            Console.WriteLine("Which claim do you want to Handle");
-            List<Claim> claims = _claimRepo.GetClaims();
-            int count = 0;
-            foreach (var claim in claims)
+            Console.Clear();
+            _claimQueue.Clear();
+            List<Claim> claimList = _claimRepo.GetClaims();
+            foreach (Claim claim in claimList)
             {
-                count++;
-                Console.WriteLine($"{count}) ClaimID: {claim.ClaimID} \n" +
-                    $"Type: {claim.ClaimType} \n" +
-                    $"Description: {claim.Description} \n" +
-                    "-------------------------------------------------------");
+                _claimQueue.Enqueue(claim);
+            }
+            bool keepThinking = true;
+            while (keepThinking)
+            {
+                int queueCount = _claimQueue.Count();
+                while (queueCount > 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Here are the details of the next claim to be handled: \n" +
+                        $"ClaimID: {_claimQueue.Peek().ClaimID} \n" +
+                        $"Claim Type: {_claimQueue.Peek().ClaimType} \n" +
+                        $"Description: {_claimQueue.Peek().Description} \n" +
+                        $"Amount: {_claimQueue.Peek().ClaimAmount} \n" +
+                        $"Date of Incedent: {_claimQueue.Peek().DateOfIncident} \n" +
+                        $"Date of Claim: {_claimQueue.Peek().DateOfClaim} \n" +
+                        $"Is Vaild: {_claimQueue.Peek().IsValid}");
 
-            }
-            int userInput = Convert.ToInt32(Console.ReadLine());
-            int indexValue = userInput - 1;
-            if (indexValue >= 0 && indexValue < claims.Count)
-            {
-                Claim claimSelected = claims[indexValue];
-                if (_claimRepo.HandleClaim(claimSelected))
-                {
-                    Console.WriteLine($"CalimID: {claimSelected.ClaimID} Handled.");
+                    Console.WriteLine("Do you want to deal with this claim now(y/n)?");
+                    string response = Console.ReadLine();
+                    if (response.ToLower().Contains("y"))
+                    {
+                        _claimRepo.HandleClaim(_claimQueue.Dequeue());
+                        queueCount -= 1;
+                    }
+                    if (response.ToLower().Contains("n"))
+                    {
+                        queueCount = 0;
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("Invald");
-                }
+                keepThinking = false;
             }
-            else
-            {
-                Console.WriteLine("Invald");
-            }
+            Console.Clear();
             Console.WriteLine("Press any key to continue.........");
             Console.ReadKey();
         }
 
         private void SeedData()
         {
-            var claim1 = new Claim(1, ClaimType.Car, "car wreck", 200.00m, DateTime.Now, DateTime.Now, true);
+            var claim1 = new Claim(1, ClaimType.Car, "car wreck", 200.00m, new DateTime(2020, 08, 25), new DateTime(2020, 08, 26), true);
+            var claim2 = new Claim(2, ClaimType.Theft, "Break in", 2000.00m, new DateTime(2020, 07, 13), new DateTime(2020, 07, 14), true);
             _claimRepo.AddClaim(claim1);
+            _claimRepo.AddClaim(claim2);
         }
     }
 }

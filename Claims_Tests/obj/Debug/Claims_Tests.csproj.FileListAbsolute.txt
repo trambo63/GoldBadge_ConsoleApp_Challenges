@@ -12,3 +12,6 @@ C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\Claims_Tests\obj\
 C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\Claims_Tests\obj\Debug\Claims_Tests.csproj.CopyComplete
 C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\Claims_Tests\obj\Debug\Claims_Tests.dll
 C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\Claims_Tests\obj\Debug\Claims_Tests.pdb
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\Claims_Tests\bin\Debug\02_Claims.exe
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\Claims_Tests\bin\Debug\02_Claims.pdb
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\Claims_Tests\bin\Debug\02_Claims.exe.config

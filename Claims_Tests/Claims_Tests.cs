@@ -27,6 +27,7 @@ namespace Claims_Tests
             bool listNotEmpty = claimList.Contains(claim);
             Assert.IsTrue(listNotEmpty);
         }
+
         [TestMethod]
         public void HandleClaimRemovesClaimFromDB()
         {

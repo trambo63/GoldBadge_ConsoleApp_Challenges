@@ -174,7 +174,7 @@ namespace _02_Claims
             {
                 claim.IsValid = false;
             }
-            Console.WriteLine(claim.IsValid);
+            Console.WriteLine($"Is Valid: {claim.IsValid}");
             Console.WriteLine("Press any key to continue.........");
             Console.ReadKey();
             _claimRepo.AddClaim(claim);

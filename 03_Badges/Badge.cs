@@ -31,12 +31,7 @@ namespace _03_Badges
         public string Door8 { get; set; }
 
         public Doors() { }
-        //public Doors(string door1, string door2, string door3)
-        //{
-        //    Door1 = door1;
-        //    Door2 = door2;
-        //    Door3 = door3;
-        //}
+        
         public void GetDoor1()
         {
             Door1 = "A1";
@@ -55,23 +50,19 @@ namespace _03_Badges
         }
         public void GetDoor5()
         {
-            Door4 = "B1";
+            Door5 = "B1";
         }
         public void GetDoor6()
         {
-            Door4 = "B2";
+            Door6 = "B2";
         }
         public void GetDoor7()
         {
-            Door4 = "B3";
+            Door7 = "B3";
         }
         public void GetDoor8()
         {
-            Door4 = "B4";
+            Door8 = "B4";
         }
     }
-    
-    
-
-
 }

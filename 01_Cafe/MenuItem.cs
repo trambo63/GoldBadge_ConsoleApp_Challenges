@@ -8,7 +8,6 @@ namespace _01_Cafe
 {
     public class MenuItem
     {
-        //props
         public string Number { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -16,7 +15,6 @@ namespace _01_Cafe
         public decimal Price { get; set; }
 
         public MenuItem() { }
-        //constructors
         public MenuItem(string number, string name, string description, string ingredients, decimal price)
         {
             Number = number;

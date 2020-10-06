@@ -38,7 +38,7 @@ namespace _03_Badges
                         AddNewBadge();
                         break;
                     case "2":
-                        //EditBadge();
+                        EditBadge();
                         break;
                     case "3":
                         ListAllBadges();
@@ -75,41 +75,34 @@ namespace _03_Badges
                 {
                     case "A1":
                         access.GetDoor1();
-                        //doorList.Add(access);
                         break;
                     case "A2":
                         access.GetDoor2();
-                        //doorList.Add(access);
                         break;
                     case "A3":
                         access.GetDoor3();
-                        //doorList.Add(access);
                         break;
                     case "A4":
                         access.GetDoor4();
-                        //doorList.Add(access);
                         break;
                     case "B1":
                         access.GetDoor5();
-                        //doorList.Add(access);
                         break;
                     case "B2":
                         access.GetDoor6();
-                        //doorList.Add(access);
                         break;
                     case "B3":
                         access.GetDoor7();
-                        //doorList.Add(access);
                         break;
                     case "B4":
                         access.GetDoor8();
-                        //doorList.Add(access);
                         break;
                     case "x":
                         keepThinking = false;
                         break;
                     default:
                         Console.WriteLine("Invalid");
+                        Console.ReadKey();
                         break;
                 }
             }
@@ -121,6 +114,89 @@ namespace _03_Badges
             _badgeRepo.AddBadge(myBadge);
         }
 
+        private void EditBadge()
+        {
+            Console.Clear();
+            Console.WriteLine("Type the ID# of the Badge you want to edit, then press enter");
+            Dictionary<int, List<Doors>> badges = _badgeRepo.GetBadges();
+            foreach (var id in badges)
+            {
+                Console.WriteLine($"Badge ID: {id.Key}");
+            }
+            int userInput = Convert.ToInt32(Console.ReadLine());
+            foreach (var id in badges.Keys)
+            {
+                if (userInput == id)
+                {
+                    badges.Remove(id);
+                    Console.Clear();
+                    Badge myBadge = new Badge();
+                    List<Doors> doorList = new List<Doors>();
+                    Doors access = new Doors();
+                    Console.WriteLine("Re-Enter Badge Number: ");
+                    myBadge.Id = Convert.ToInt32(Console.ReadLine());
+                    bool keepThinking = true;
+                    while (keepThinking)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Which doors would you like to add to this Badge \n" +
+                            "Level A: A1, A2, A3, A4 \n" +
+                            "Level B: B1, B2, B3, B4 \n" +
+                            "Type x and hit enter to exit Menu");
+                        string userChoice = Console.ReadLine();
+                        switch (userChoice)
+                        {
+                            case "A1":
+                                access.GetDoor1();
+                                break;
+                            case "A2":
+                                access.GetDoor2();
+                                break;
+                            case "A3":
+                                access.GetDoor3();
+                                break;
+                            case "A4":
+                                access.GetDoor4();
+                                break;
+                            case "B1":
+                                access.GetDoor5();
+                                break;
+                            case "B2":
+                                access.GetDoor6();
+                                break;
+                            case "B3":
+                                access.GetDoor7();
+                                break;
+                            case "B4":
+                                access.GetDoor8();
+                                break;
+                            case "x":
+                                keepThinking = false;
+                                break;
+                            default:
+                                Console.WriteLine("Invalid");
+                                Console.ReadKey();
+                                break;
+                        }
+                    }
+                    doorList.Add(access);
+                    myBadge.DoorsList = doorList;
+                    _badgeRepo.AddBadge(myBadge);
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid");
+                }
+            }
+
+
+
+
+            Console.WriteLine("Press any key to continue.........");
+            Console.ReadKey();
+        }
+
         private void ListAllBadges()
         {
             Console.Clear();
@@ -130,12 +206,13 @@ namespace _03_Badges
                 foreach (var listMember in badges[contents])
                 {
                     Console.WriteLine($"Badge ID: {contents} \n" +
-                        $"Door Access: {listMember.Door1} {listMember.Door2} {listMember.Door3} {listMember.Door4}{listMember.Door5} {listMember.Door6} {listMember.Door7} {listMember.Door8}" );
+                        $"Door Access: {listMember.Door1} {listMember.Door2} {listMember.Door3} {listMember.Door4} {listMember.Door5} {listMember.Door6} {listMember.Door7} {listMember.Door8}");
                 }
             }
             Console.WriteLine("Press any key to continue.........");
             Console.ReadKey();
         }
+
         private void SeedData()
         {
             Doors access1 = new Doors();

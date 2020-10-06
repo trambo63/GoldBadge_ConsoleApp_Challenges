@@ -62,8 +62,8 @@ namespace _02_Claims
                     $"Claim Type: {claim.ClaimType} \n" +
                     $"Description: {claim.Description} \n" +
                     $"Amount: {claim.ClaimAmount} \n" +
-                    $"Date Of Incedent: {claim.DateOfIncident} \n" +
-                    $"Date Of Claim: {claim.DateOfClaim} \n" +
+                    $"Date Of Incedent: {claim.DateOfIncident.ToString("dd/mm/yyyy")} \n" +
+                    $"Date Of Claim: {claim.DateOfClaim.ToString("dd/mm/yyyy")} \n" +
                     $"IsVaild: {claim.IsValid}");
                 Console.WriteLine("------------------------------");
             }
@@ -201,8 +201,8 @@ namespace _02_Claims
                         $"Claim Type: {_claimQueue.Peek().ClaimType} \n" +
                         $"Description: {_claimQueue.Peek().Description} \n" +
                         $"Amount: {_claimQueue.Peek().ClaimAmount} \n" +
-                        $"Date of Incedent: {_claimQueue.Peek().DateOfIncident} \n" +
-                        $"Date of Claim: {_claimQueue.Peek().DateOfClaim} \n" +
+                        $"Date of Incedent: {_claimQueue.Peek().DateOfIncident.ToString("dd/mm/yyyy")} \n" +
+                        $"Date of Claim: {_claimQueue.Peek().DateOfClaim.ToString("dd/mm/yyyy")} \n" +
                         $"Is Vaild: {_claimQueue.Peek().IsValid}");
 
                     Console.WriteLine("Do you want to deal with this claim now(y/n)?");
@@ -226,7 +226,7 @@ namespace _02_Claims
 
         private void SeedData()
         {
-            var claim1 = new Claim(1, ClaimType.Car, "car wreck", 200.00m, new DateTime(2020, 08, 25), new DateTime(2020, 08, 26), true);
+            var claim1 = new Claim(1, ClaimType.Car, "car wreck", 2000.00m, new DateTime(2020, 08, 25), new DateTime(2020, 08, 26), true);
             var claim2 = new Claim(2, ClaimType.Theft, "Break in", 2000.00m, new DateTime(2020, 07, 13), new DateTime(2020, 07, 14), true);
             _claimRepo.AddClaim(claim1);
             _claimRepo.AddClaim(claim2);

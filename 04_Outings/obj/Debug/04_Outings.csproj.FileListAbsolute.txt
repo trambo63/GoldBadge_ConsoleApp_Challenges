@@ -1,0 +1,7 @@
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\04_Outings\bin\Debug\04_Outings.exe.config
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\04_Outings\bin\Debug\04_Outings.exe
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\04_Outings\bin\Debug\04_Outings.pdb
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\04_Outings\obj\Debug\04_Outings.csprojAssemblyReference.cache
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\04_Outings\obj\Debug\04_Outings.csproj.CoreCompileInputs.cache
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\04_Outings\obj\Debug\04_Outings.exe
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\04_Outings\obj\Debug\04_Outings.pdb

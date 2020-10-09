@@ -20,9 +20,9 @@ namespace _05_Greeting
 
         //A class can have any number of constructors.
         //The main use of constructors is to initialize the 
-        //private fields of the class while creating an instance for the class.
+        //private fields of the class while creating an instance for the class(Seed Data).
         //A constructor doesn't have any return type, not even void.
-        //A static constructor can not be a parametrized constructor.
+        //A static constructor can not be a parametrized constructor(this is for myCustomer).
         //within a class, you can create one static constructor only. 
         public Customer() { }
 

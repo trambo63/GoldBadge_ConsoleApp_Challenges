@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,6 +50,12 @@ namespace _06_GreenPlan
                         break;
                 }
             }
+        }
+        private void SeedData()
+        {
+            var car1 = new Car(CarType.Electric, 55.600, SateyRating.Four_Star, FuelEfficiencyRating.Excellent);
+            var car2 = new Car(CarType.Gas, 20.000, SateyRating.Five_Star, FuelEfficiencyRating.Fair);
+            var car3 = new Car(CarType.Hybrid, 23.000, SateyRating.Five_Star, FuelEfficiencyRating.Excellent);
         }
     }
 }

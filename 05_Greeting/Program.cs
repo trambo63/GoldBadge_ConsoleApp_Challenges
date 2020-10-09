@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace _05_Greeting
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+            ProgramUI ui = new ProgramUI();
+            ui.Run();
         }
     }
 }

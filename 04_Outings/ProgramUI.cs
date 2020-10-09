@@ -49,6 +49,7 @@ namespace _04_Outings
                 }
             }
         }
+
         private void ShowAllOutings()
         {
             Console.Clear();
@@ -57,7 +58,7 @@ namespace _04_Outings
             {
                 Console.WriteLine($"Event Type: {outing.EventType} \n" +
                     $"Number of Attendees: {outing.NumberOfAttendees} \n" +
-                    $"Date of Event: {outing.Date.ToString("dd/mm/yyyy")} \n" +
+                    $"Date of Event: {outing.Date.ToShortDateString()} \n" +
                     $"Cost per Person: {outing.CostPerPerson} \n" +
                     $"Cost of Event: {outing.CostPerPerson} \n" +
                     "-------------------------------------------------");
@@ -181,9 +182,9 @@ namespace _04_Outings
 
         private void SeedData()
         {
-            var outing1 = new Outing(EventType.AmusementPark, 50, new DateTime(08 / 24 / 2019), 10.00, 400.00);
-            var outing2 = new Outing(EventType.Concert, 30, new DateTime(07 / 23 / 2019), 15.00, 200.00);
-            var outing3 = new Outing(EventType.Concert, 40, new DateTime(06 / 23 / 2019), 16.00, 150.00);
+            var outing1 = new Outing(EventType.AmusementPark, 50, new DateTime(2019, 8, 23), 10.00, 400.00);
+            var outing2 = new Outing(EventType.Concert, 30, new DateTime(2018, 8, 23), 15.00, 200.00);
+            var outing3 = new Outing(EventType.Concert, 40, new DateTime(2017, 7, 24), 16.00, 150.00);
             _outingRepo.AddOuting(outing1);
             _outingRepo.AddOuting(outing2);
             _outingRepo.AddOuting(outing3);

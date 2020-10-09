@@ -7,7 +7,7 @@
     <ProjectGuid>{54574479-50A1-419C-9603-EEEF62DA4BFD}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>_05_Greeting</RootNamespace>
-    <AssemblyName>_05_Greeting</AssemblyName>
+    <AssemblyName>05_Greeting</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer.cs" />
+    <Compile Include="CustomerRepo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProgramUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

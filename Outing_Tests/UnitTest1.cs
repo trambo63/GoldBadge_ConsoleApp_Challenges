@@ -9,6 +9,7 @@ namespace Outing_Tests
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }

@@ -1,0 +1,7 @@
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\06_GreenPlan\bin\Debug\06_GreenPlan.exe.config
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\06_GreenPlan\bin\Debug\06_GreenPlan.exe
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\06_GreenPlan\bin\Debug\06_GreenPlan.pdb
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\06_GreenPlan\obj\Debug\06_GreenPlan.csproj.CoreCompileInputs.cache
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\06_GreenPlan\obj\Debug\06_GreenPlan.exe
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\06_GreenPlan\obj\Debug\06_GreenPlan.pdb
+C:\ElevenFiftyProjects\GoldBadge_ConsoleApplication_Challenges\06_GreenPlan\obj\Debug\06_GreenPlan.csprojAssemblyReference.cache

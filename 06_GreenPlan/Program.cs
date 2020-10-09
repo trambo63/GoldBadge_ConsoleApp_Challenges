@@ -10,7 +10,8 @@ namespace _06_GreenPlan
     {
         static void Main(string[] args)
         {
-
+            ProgramUI ui = new ProgramUI();
+            ui.Run();
         }
     }
 }

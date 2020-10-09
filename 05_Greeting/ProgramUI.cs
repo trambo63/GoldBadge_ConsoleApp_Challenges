@@ -193,7 +193,7 @@ namespace _05_Greeting
                 Customer desiredCustomer = customerList[correctIndex];
                 if (_customerRepo.DeleteCustomer(desiredCustomer))
                 {
-                    Console.WriteLine($"{desiredCustomer} has been Deleted");
+                    Console.WriteLine($"{desiredCustomer.FirstName} has been Deleted!");
                 }
                 else
                 {
